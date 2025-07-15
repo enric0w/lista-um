@@ -5,39 +5,31 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="POST">
-    <input type="number" name="num1" placeholder="Primeiro número" required>
-    <input type="number" name="num2" placeholder="Segundo número" required>
-    <button type="submit" name="verificar">Verificar</button>
-</form>
 
-<?php
-if (isset($_POST['verificar'])) {
-    $n1 = $_POST['num1'];
-    $n2 = $_POST['num2'];
+ <form method="POST" action="">
+        <label for="digita_numero">Verifique o número.</label>
+        <input type="number" id="digita_numero" name="digita_numero" required>
+        <button type="submit" name="verificar_digitado">Verificar</button>
+   </form>
 
-    $soma1 = 0;
-    for ($i = 1; $i < $n1; $i++) {
-        if ($n1 % $i == 0) {
-            $soma1 += $i;
-        }
-    }
+   <?php
+   
+   if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-    $soma2 = 0;
-    for ($i = 1; $i < $n2; $i++) {
-        if ($n2 % $i == 0) {
-            $soma2 += $i;
-        }
-    }
+    if(isset($_POST['verificar_digitado'])){
 
-    if ($soma1 == $n2 && $soma2 == $n1) {
-        echo "$n1 e $n2 são números amigos!";
-    } else {
-        echo "$n1 e $n2 não são números amigos.";
-    }
-}
-?>
+        $numero = $_POST['digita_numero'];
+        $i=1;
 
+            while ($i <= $numero) {
+            if ($numero % $i == 0) {
+                echo $i . " ";
+            }
+            $i++;
+        };
+    };
+};
     
+?>
 </body>
 </html>
